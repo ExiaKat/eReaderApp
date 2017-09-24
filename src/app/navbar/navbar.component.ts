@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onToggleMenu() {
-    this.toggle = this.toggle ? false : true;
+    this.toggle = !this.toggle;
   }
 
   onToggleMenuClass() {
