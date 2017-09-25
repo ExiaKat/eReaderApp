@@ -1,0 +1,28 @@
+<form #fm="ngForm" (ngSubmit)="onSearch(fm)" >
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <label for="parentName">Parent Name:</label>
+        <input type="text" id="parentName" class="form-control" name="parentName" ngModel>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" class="form-control" name="mobile" ngModel>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <label for="serialNumber">e-Reader S/N:</label>
+        <input type="text" id="serialNumber" class="form-control" name="serialNumber" ngModel>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <div class="form-group">
+        <button style="margin-top: 25px" class="btn btn-primary form-control" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-xs-12">
+    <app-header></app-header>
+  </div>
+</div>
+<div class="row">
+  <form #fm="ngForm" class="form-inline" (ngSubmit)="onborrowBook(fm)" >
+    <div class="form-group">
+      <label for="bookName">Book Name: </label>
+      <input 
+        type="text" 
+        id="bookName" 
+        class="form-control" 
+        name="bookName" 
+        ngModel
+        required>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity: </label>
+      <input 
+        type="number" 
+        id="quantity" 
+        class="form-control" 
+        name="quantity" 
+        ngModel
+        required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="fm.invalid">Borrow Book</button>
+  </form>
+  <table class="table table-striped table-hover" style="margin-top: 10px">
+    <tr>
+      <th>#</th>
+      <th>Book Name</th>
+      <th>Qantity</th>
+      <th>Borrow Date</th>
+      <th>Return Date</th>
+    </tr>
+    <tr *ngFor="let rentalBook of rentalBooks; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{rentalBook.bookName}}</td>
+      <td>{{rentalBook.quantity}}</td>
+      <td>{{rentalBook.borrowDate.toLocaleDateString()}}</td>
+      <td>{{rentalBook.returnDate}}</td>
+    </tr>
+  </table>
+</div>
