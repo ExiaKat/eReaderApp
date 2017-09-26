@@ -1,5 +1,6 @@
 import { Child } from './child.model';
 import { EReader } from './e-reader.model';
+import { RentalBook } from './rental-book.model';
 
 export class MemberInfo {
   constructor(

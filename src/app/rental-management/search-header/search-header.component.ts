@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-search-header',
+  templateUrl: './search-header.component.html',
+  styleUrls: ['./search-header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class SearchHeaderComponent implements OnInit {
 
   constructor() { }
 

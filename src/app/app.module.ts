@@ -6,21 +6,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { openDropdownDirective } from './shared/open-dropdown.directive';
-import { HeaderComponent } from './rental-management/header/header.component';
+import { SearchHeaderComponent } from './rental-management/search-header/search-header.component';
 import { BorrowComponent } from './rental-management/borrow/borrow.component';
 import { ReturnComponent } from './rental-management/return/return.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RentalBooksService } from './rental-management/services/rental-books.service';
+import { MemberInfoComponent } from './member-info/member-info.component';
+import { MemberSearchComponent } from './member-search/member-search.component';
+import { MemberResultComponent } from './member-search/member-result/member-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     openDropdownDirective,
-    HeaderComponent,
+    SearchHeaderComponent,
     BorrowComponent,
     ReturnComponent,
-    HomePageComponent
+    HomePageComponent,
+    MemberInfoComponent,
+    MemberSearchComponent,
+    MemberResultComponent
   ],
   imports: [
     BrowserModule,
