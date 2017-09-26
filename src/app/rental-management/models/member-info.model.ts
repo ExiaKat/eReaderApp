@@ -3,6 +3,8 @@ import { EReader } from './e-reader.model';
 import { RentalBook } from './rental-book.model';
 
 export class MemberInfo {
+  public _id: string;
+  
   constructor(
     public memberNumber: string,
     public parentName: string,

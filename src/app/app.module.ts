@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { RentalBooksService } from './rental-management/services/rental-books.se
 import { MemberInfoComponent } from './member-info/member-info.component';
 import { MemberSearchComponent } from './member-search/member-search.component';
 import { MemberResultComponent } from './member-search/member-result/member-result.component';
+import { MemberInfoService } from './rental-management/services/member-info.service';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,10 @@ import { MemberResultComponent } from './member-search/member-result/member-resu
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [RentalBooksService],
+  providers: [RentalBooksService, MemberInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

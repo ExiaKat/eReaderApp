@@ -1,1 +1,106 @@
-<p>some text</p>
+<form (ngSubmit)="onSaveMember()" [formGroup]="memberInfoForm">
+  <div class="panel panel-default">
+    <div class="panel-heading">Member Info</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="memberNumber">Member Number</label>
+            <input type="text" id="memberNumber" class="form-control" formControlName="memberNumber">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="parentName">Parent Name</label>
+            <input type="text" id="parentName" class="form-control" formControlName="parentName">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="mobile">Mobile Number</label>
+            <input type="text" id="mobile" class="form-control" formControlName="mobile">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <button type="button" class="btn btn-link" (click)="onAddChild()">Add Child</button>
+        </div>
+      </div>
+      <div class="row" formArrayName="children">
+        <div class="panel panel-default" *ngFor="let childForm of childrenFormArray.controls; let i = index" [formGroup]="childForm">
+          <div class="panel-heading">Child {{i + 1}}</div>
+          <div class="panel-body">
+            <div class="col-xs-12 col-md-2">
+              <div class="form-group">
+                <label for="childName">Child Name</label>
+                <input type="text" id="childName" class="form-control" formControlName="childName">
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+              <div class="form-group">
+                <label for="dob">D.O.B.</label>
+                <input type="date" id="dob" class="form-control" formControlName="dob">
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2">
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender" class="form-control" formControlName="gender">
+                  <option value="male">Male</option>
+                  <option value="female">female</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-danger" (click)="onDeleteChild(i)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">e-Reader Info</div>
+    <div class="panel-body" formGroupName="eReader">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="model">e-Reader Model</label>
+            <input type="text" id="model" class="form-control" formControlName="model">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="serialNumber">e-Reader S/N</label>
+            <input type="text" id="serialNumber" class="form-control" formControlName="serialNumber">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="purchasingDate">Purchasing Date</label>
+            <input type="date" id="purchasingDate" class="form-control" formControlName="purchasingDate">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Rental Info</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="deposit">Deposit</label>
+            <input type="number" id="deposit" class="form-control" formControlName="deposit">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-2">
+          <div class="form-group">
+            <label for="expiryDate">Expiry Date</label>
+            <input type="date" id="expiryDate" class="form-control" formControlName="expiryDate">
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="memberInfoForm.invalid">Save Member</button>
+</form>

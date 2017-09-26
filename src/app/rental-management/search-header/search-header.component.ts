@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-header',
@@ -8,13 +9,17 @@ import { NgForm } from '@angular/forms';
 })
 export class SearchHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   onSearch(fm: NgForm) {
-    console.log(fm);
+    const parentName = fm.value.parentName;
+    const mobile = fm.value.mobile;
+    const serialNumber = fm.value.serialNumber;
+    if (this.router.url.includes("/search"))
+      this.router.navigate(['result'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
   }
 
 }
