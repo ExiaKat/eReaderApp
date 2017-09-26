@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MemberInfoService } from '../rental-management/services/member-info.service';
-
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-member-info',
@@ -10,14 +10,35 @@ import { MemberInfoService } from '../rental-management/services/member-info.ser
 })
 export class MemberInfoComponent implements OnInit {
   memberInfoForm: FormGroup;
+  editMode = false;
+  buttonText = "Save";
   get childrenFormArray() {
     return this.memberInfoForm.get("children") as FormArray;
   }
 
-  constructor(private miService: MemberInfoService) { }
+  constructor(private miService: MemberInfoService,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
+    this.route.params.subscribe((params: Params) => {
+      if (params.id) {
+        const index = params.id;
+        this.editMode = true;
+        this.buttonText = "Update";
+        const memberInfo = this.miService.getMemberById(index);
+        console.log(memberInfo);
+        this.memberInfoForm.patchValue({
+          memberNumber: memberInfo.memberNumber,
+          parentName: memberInfo.parentName,
+          mobile: memberInfo.mobile,
+          children: memberInfo.children,
+          eReader: memberInfo.eReader,
+          deposit: memberInfo.deposit,
+          exiryDate: memberInfo.expiryDate
+        });
+      }
+    });
   }
 
   private initForm() {
@@ -56,6 +77,11 @@ export class MemberInfoComponent implements OnInit {
 
   onSaveMember() {
     console.log(this.memberInfoForm.value);
-    this.miService.addMember(this.memberInfoForm.value);
+    if(this.editMode)
+      this.miService.updateMember(this.memberInfoForm.value);
+    else 
+      this.miService.addMember(this.memberInfoForm.value);
+    this.editMode = false;
+    this.buttonText = "Save";
   }
 }

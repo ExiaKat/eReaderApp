@@ -9,12 +9,12 @@ export class MemberInfoService {
     mobile: "15962606201",
     children: [{
       childName: "Xia Xuelan",
-      dob: new Date(2012,5,3),
+      dob: new Date('03/05/2012'),
       gender: "female"
     }],
-    eReader: {model: "S800", serialNumber: "123456", purchasingDate: new Date(2015, 6, 11)},
+    eReader: {model: "S800", serialNumber: "123456", purchasingDate: new Date('11/06/2015')},
     deposit: 100,
-    expiryDate: new Date(2018, 1, 1)
+    expiryDate: new Date('01/01/2018')
   }];
 
   addMember(memberInfo: MemberInfo) {
@@ -22,7 +22,7 @@ export class MemberInfoService {
     alert(`New member ${memberInfo.parentName} saved successfully!`)
   }
 
-  editMember(newMemberInfo: MemberInfo) {
+  updateMember(newMemberInfo: MemberInfo) {
     let index = this.members.findIndex(element => {
       return element._id === newMemberInfo._id;
     })
@@ -44,6 +44,10 @@ export class MemberInfoService {
     if (serialNumber)
       return this.searchForMember("serialNumber", serialNumber);
     return [];
+  }
+
+  getMemberById(index: number) {
+    return this.members[index];
   }
 
   private searchForMember(property: string, query: string) {

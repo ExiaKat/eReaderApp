@@ -22,4 +22,8 @@ export class MemberResultComponent implements OnInit {
     });
   }
 
+  onEditMember(index: number) {
+    this.router.navigate(['..',index, 'edit'], {relativeTo: this.route});
+  }
+
 }
