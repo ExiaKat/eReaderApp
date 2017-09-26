@@ -13,4 +13,8 @@ export class RentalBooksService {
   getRentalBooks() {
     return this.rentalBooks.slice();
   }
+
+  clearBooks() {
+    this.rentalBooks = [];
+  }
 }

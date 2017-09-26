@@ -4,6 +4,6 @@ import { RentalBook } from './rental-book.model';
 export class MemberRental {
   constructor(
     public memberInfo: MemberInfo,
-    public rentalBooks: Array<RentalBook>
+    public rentalBooks: Array<RentalBook> = []
   ) {}
 }

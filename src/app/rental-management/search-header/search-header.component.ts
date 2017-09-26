@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MemberRentalService } from '../services/member-rental.service';
+import { MemberInfoService } from '../services/member-info.service';
 
 @Component({
   selector: 'app-search-header',
@@ -9,7 +11,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SearchHeaderComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, 
+              private route: ActivatedRoute,
+              private miService: MemberInfoService,
+              private mrService: MemberRentalService) { }
 
   ngOnInit() {
   }
@@ -20,6 +25,9 @@ export class SearchHeaderComponent implements OnInit {
     const serialNumber = fm.value.serialNumber;
     if (this.router.url.includes("/search"))
       this.router.navigate(['result'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
+    else {
+      this.router.navigate(['member'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group" *ngFor="let memberInfo of memberInfos; let i = index">
-      <a class="list-group-item" (click)="onEditMember(i)">
+      <a class="list-group-item" (click)="onSelectMember(i)">
         <h3>Parent Name: {{memberInfo.parentName}}</h3>
         <h4 *ngFor="let child of memberInfo.children">
           <span>Child Name: {{child.childName}}</span>
