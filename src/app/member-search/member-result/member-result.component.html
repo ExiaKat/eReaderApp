@@ -1,3 +1,14 @@
-<p>
-  member-result works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="list-group" *ngFor="let memberInfo of memberInfos; let i = index">
+      <a class="list-group-item">
+        <h3>Parent Name: {{memberInfo.parentName}}</h3>
+        <h4 *ngFor="let child of memberInfo.children">
+          <span>Child Name: {{child.childName}}</span>
+        </h4>
+        <p>Mobile: {{memberInfo.mobile}}</p>
+        <p>e-Reader model: {{memberInfo.eReader.model}}, {{memberInfo.eReader.serialNumber}}</p>
+      </a>
+    </ul>
+  </div>
+</div>

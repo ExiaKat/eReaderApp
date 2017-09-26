@@ -25,7 +25,13 @@ export class MemberInfoComponent implements OnInit {
       'memberNumber': new FormControl(null),
       'parentName': new FormControl(null, Validators.required),
       'mobile': new FormControl(null, Validators.required),
-      'children': new FormArray([]),
+      'children': new FormArray([
+        new FormGroup({
+          'childName': new FormControl(null, Validators.required),
+          'dob': new FormControl(null, Validators.required),
+          'gender': new FormControl(null, Validators.required)
+        })
+      ]),
       'eReader': new FormGroup({
         'model': new FormControl(null, Validators.required),
         'serialNumber': new FormControl(null, Validators.required),
@@ -49,8 +55,7 @@ export class MemberInfoComponent implements OnInit {
   }
 
   onSaveMember() {
-    
     console.log(this.memberInfoForm.value);
-    // this.miService.addMember();
+    this.miService.addMember(this.memberInfoForm.value);
   }
 }

@@ -14,8 +14,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div [ngClass]="onToggleMenuClass()" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a routerLink="/borrow" routerLinkActive>Borrow</a></li>
-          <li><a routerLink="/return" routerLinkActive>Return</a></li>
+          <li routerLinkActive="active"><a routerLink="/borrow">Borrow</a></li>
+          <li routerLinkActive="active"><a routerLink="/return">Return</a></li>
         </ul>
         <!-- TODO: Search bar function -->
         <!-- <form class="navbar-form navbar-left" role="search">
@@ -26,7 +26,7 @@
         </form> -->
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown" appOpenDropdown>
-            <a class="dropdown-toggle">Member <b class="caret"></b></a>
+            <a style="cursor: pointer" class="dropdown-toggle">Member <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a routerLink="/member">New Member</a></li>
               <li><a routerLink="/search">Edit Member</a></li>

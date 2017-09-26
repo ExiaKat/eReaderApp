@@ -19,7 +19,6 @@ export class MemberResultComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: SearchQuery) => {
       this.memberInfos = this.miService.getMember(queryParams);
-      console.log(this.memberInfos);
     });
   }
 
