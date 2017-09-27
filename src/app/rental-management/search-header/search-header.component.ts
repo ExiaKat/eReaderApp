@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MemberRentalService } from '../services/member-rental.service';
 import { MemberInfoService } from '../services/member-info.service';
 
 @Component({
@@ -13,8 +12,7 @@ export class SearchHeaderComponent implements OnInit {
 
   constructor(private router: Router, 
               private route: ActivatedRoute,
-              private miService: MemberInfoService,
-              private mrService: MemberRentalService) { }
+              private miService: MemberInfoService) { }
 
   ngOnInit() {
   }

@@ -15,7 +15,6 @@ import { MemberInfoComponent } from './member-info/member-info.component';
 import { MemberSearchComponent } from './member-search/member-search.component';
 import { MemberResultComponent } from './member-search/member-result/member-result.component';
 import { MemberInfoService } from './rental-management/services/member-info.service';
-import { MemberRentalService } from './rental-management/services/member-rental.service';
 import { BorrowBooksComponent } from './rental-management/borrow/borrow-books/borrow-books.component';
 import { ReturnBooksComponent } from './rental-management/return/return-books/return-books.component';
 
@@ -40,7 +39,7 @@ import { ReturnBooksComponent } from './rental-management/return/return-books/re
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [RentalBooksService, MemberInfoService, MemberRentalService],
+  providers: [RentalBooksService, MemberInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MemberInfoService } from '../../rental-management/services/member-info.service';
 import { SearchQuery } from '../../rental-management/models/search-query.model';
 import { MemberInfo } from '../../rental-management/models/member-info.model';
-import { MemberRentalService } from '../../rental-management/services/member-rental.service';
 
 @Component({
   selector: 'app-member-result',
@@ -15,8 +14,7 @@ export class MemberResultComponent implements OnInit {
 
   constructor(private router: Router, 
               private route: ActivatedRoute,
-              private miService: MemberInfoService,
-              private mrService: MemberRentalService) { }
+              private miService: MemberInfoService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams: SearchQuery) => {

@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 import { RentalBooksService } from '../../services/rental-books.service';
 import { RentalBook } from '../../models/rental-book.model';
 import { Subscription } from 'rxjs/Subscription';
-import { MemberRentalService } from '../../services/member-rental.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MemberInfoService } from '../../services/member-info.service';
 
