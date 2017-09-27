@@ -28,9 +28,12 @@ export class MemberInfoService {
 
   updateMember(newMemberInfo: MemberInfo) {
     let index = this.members.findIndex(element => {
-      return element._id === newMemberInfo._id;
+      //TODO change to use _id when connecting to database
+      // return element._id === newMemberInfo._id;
+      return element.mobile === newMemberInfo.mobile;
     })
-    this.members.splice(index, 1, newMemberInfo);
+    if (index !== -1)
+      this.members.splice(index, 1, newMemberInfo);
   }
 
   deleteMember(index: number) {

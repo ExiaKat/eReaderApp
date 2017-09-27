@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MemberInfoService } from '../rental-management/services/member-info.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MemberInfo } from '../rental-management/models/member-info.model';
+import { Child } from '../rental-management/models/child.model';
 
 @Component({
   selector: 'app-member-info',
@@ -18,6 +19,7 @@ export class MemberInfoComponent implements OnInit {
   }
 
   constructor(private miService: MemberInfoService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -29,11 +31,11 @@ export class MemberInfoComponent implements OnInit {
         this.buttonText = "Update";
         const memberInfo = this.miService.getMemberById(id);
         console.log(memberInfo);
+        this.patchValueChildren(memberInfo.children);
         this.memberInfoForm.patchValue({
           memberNumber: memberInfo.memberNumber,
           parentName: memberInfo.parentName,
           mobile: memberInfo.mobile,
-          children: memberInfo.children,
           eReader: memberInfo.eReader,
           deposit: memberInfo.deposit,
           exiryDate: memberInfo.expiryDate
@@ -47,13 +49,7 @@ export class MemberInfoComponent implements OnInit {
       'memberNumber': new FormControl(null),
       'parentName': new FormControl(null, Validators.required),
       'mobile': new FormControl(null, Validators.required),
-      'children': new FormArray([
-        new FormGroup({
-          'childName': new FormControl(null, Validators.required),
-          'dob': new FormControl(null, Validators.required),
-          'gender': new FormControl(null, Validators.required)
-        })
-      ]),
+      'children': new FormArray([]),
       'eReader': new FormGroup({
         'model': new FormControl(null, Validators.required),
         'serialNumber': new FormControl(null, Validators.required),
@@ -64,26 +60,41 @@ export class MemberInfoComponent implements OnInit {
     });
   }
 
-  onAddChild() {
+  onAddChild(child: Child = null) {
+    let childName, dob, gender = null;
+
+    if(child) {
+      childName = child.childName;
+      dob = child.dob;
+      gender = child.gender;
+    }
     this.childrenFormArray.push(new FormGroup({
-      'childName': new FormControl(null, Validators.required),
-      'dob': new FormControl(null, Validators.required),
-      'gender': new FormControl(null, Validators.required)
+      'childName': new FormControl(childName, Validators.required),
+      'dob': new FormControl(dob, Validators.required),
+      'gender': new FormControl(gender, Validators.required),
     }));
+  }
+
+  private patchValueChildren(children: Child[]) {
+    children.forEach(child => {
+      this.onAddChild(child);
+    });
   }
 
   onDeleteChild(index: number) {
     this.childrenFormArray.controls.splice(index, 1);
+    this.memberInfoForm.value.children.splice(index, 1);
   }
 
   onSaveMember() {
-    console.log(this.memberInfoForm.value);
+    console.log(this.memberInfoForm);
     if(this.editMode)
       this.miService.updateMember(this.createMemberFromFormValue());
     else 
       this.miService.addMember(this.createMemberFromFormValue());
     this.editMode = false;
     this.buttonText = "Save";
+    this.router.navigate(['/search']);
   }
 
   private createMemberFromFormValue() {

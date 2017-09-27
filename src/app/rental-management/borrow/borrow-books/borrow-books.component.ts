@@ -6,6 +6,7 @@ import { RentalBook } from '../../models/rental-book.model';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MemberInfoService } from '../../services/member-info.service';
+import { MemberInfo } from '../../models/member-info.model';
 
 @Component({
   selector: 'app-borrow-books',
@@ -15,6 +16,7 @@ import { MemberInfoService } from '../../services/member-info.service';
 export class BorrowBooksComponent implements OnInit, OnDestroy {
   rentalBooks: Array<RentalBook>;
   memberId: string;
+  memberInfo: MemberInfo;
   subscription: Subscription;
 
   constructor(private rbService: RentalBooksService,
@@ -25,6 +27,7 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
         this.memberId = params.id;
+        this.memberInfo = this.miService.getMemberById(this.memberId);
       }
       else {
         alert("No member id is provided for borrowing books");        

@@ -1,3 +1,12 @@
+<h3>Parent Name: {{memberInfo.parentName}}</h3>
+<small>Mobile: {{memberInfo.mobile}}</small>
+<div *ngFor="let child of memberInfo.children; let i = index">
+  <p>
+    <b>Child{{i + 1}}:</b> {{child.childName}} <b>gender:</b> {{child.gender}}
+  </p>
+  <p><b>D.O.B.</b> {{child.dob}}</p>
+</div>
+<hr>
 <div class="row">
     <form #fm="ngForm" class="form-inline" (ngSubmit)="onborrowBook(fm)" >
       <div class="form-group">
