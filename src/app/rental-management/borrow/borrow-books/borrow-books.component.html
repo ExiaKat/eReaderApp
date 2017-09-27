@@ -30,6 +30,7 @@
         <th>Qantity</th>
         <th>Borrow Date</th>
         <th>Return Date</th>
+        <th></th>
       </tr>
       <tr *ngFor="let rentalBook of rentalBooks; let i=index">
         <td>{{i+1}}</td>
@@ -37,6 +38,10 @@
         <td>{{rentalBook.quantity}}</td>
         <td>{{rentalBook.borrowDate.toLocaleDateString()}}</td>
         <td>{{rentalBook.returnDate}}</td>
+        <td>
+          <!-- <a role="button" style="cursor: pointer">Edit</a> -->
+          <a role="button" style="cursor: pointer" (click)="onDeleteBook(i)">Delete</a>
+        </td>
       </tr>
     </table>
   </div>

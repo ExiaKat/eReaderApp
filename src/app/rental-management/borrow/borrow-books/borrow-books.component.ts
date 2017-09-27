@@ -5,6 +5,8 @@ import { RentalBooksService } from '../../services/rental-books.service';
 import { RentalBook } from '../../models/rental-book.model';
 import { Subscription } from 'rxjs/Subscription';
 import { MemberRentalService } from '../../services/member-rental.service';
+import { ActivatedRoute, Params } from '@angular/router';
+import { MemberInfoService } from '../../services/member-info.service';
 
 @Component({
   selector: 'app-borrow-books',
@@ -13,12 +15,23 @@ import { MemberRentalService } from '../../services/member-rental.service';
 })
 export class BorrowBooksComponent implements OnInit, OnDestroy {
   rentalBooks: Array<RentalBook>;
+  memberId: string;
   subscription: Subscription;
 
   constructor(private rbService: RentalBooksService,
-              private mrService: MemberRentalService) { }
+              private route: ActivatedRoute,
+              private miService: MemberInfoService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      if (params.id) {
+        this.memberId = params.id;
+      }
+      else {
+        alert("No member id is provided for borrowing books");        
+      }
+    });
+    this.rentalBooks = this.rbService.getRentalBooks();
     this.subscription = this.rbService.newRental.subscribe((rentalBooks) => {
       this.rentalBooks = rentalBooks;
     });
@@ -34,8 +47,16 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
 
   onSaveBooks() {
     const borrowedBooks = this.rbService.getRentalBooks();
-    this.mrService.setRentalBooks(borrowedBooks);
-    this.rbService.clearBooks();
+    if (borrowedBooks.length > 0) {
+      this.miService.setRentalBooks(this.memberId, borrowedBooks);
+      this.rbService.clearBooks();
+    } 
+    else  
+      alert("Please add books first");
+  }
+
+  onDeleteBook(index: number) {
+    this.rbService.deleteBook(index);
   }
 
   ngOnDestroy() {

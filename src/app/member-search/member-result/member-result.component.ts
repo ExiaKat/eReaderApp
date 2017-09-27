@@ -26,12 +26,15 @@ export class MemberResultComponent implements OnInit {
 
   onSelectMember(index: number) {
     const url = this.router.url;
-    if(url.includes('/search'))
-      this.router.navigate(['..',index, 'edit'], {relativeTo: this.route});
-    else if(url.includes('/borrow')) {
-      this.mrService.setMemberInfo(this.memberInfos[index]);
-      // this.router.navigate(['..', index, 'books'], {relativeTo: this.route});
-      this.router.navigate(['/borrow-books', index]);
+    //TODO: will change to use _id when connecting to database.
+    const mobile = this.memberInfos[index].mobile;
+    if (url.includes('/search'))
+      this.router.navigate(['..', mobile, 'edit'], {relativeTo: this.route});
+    else if (url.includes('/borrow')) {
+      this.router.navigate(['/borrow-books', mobile]);
+    }
+    else if (url.includes('/return')) {
+      this.router.navigate(['return-books', mobile]);
     }
   }
 

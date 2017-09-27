@@ -7,6 +7,7 @@ import { MemberInfoComponent } from './member-info/member-info.component';
 import { MemberSearchComponent } from './member-search/member-search.component';
 import { MemberResultComponent } from './member-search/member-result/member-result.component';
 import { BorrowBooksComponent } from './rental-management/borrow/borrow-books/borrow-books.component';
+import { ReturnBooksComponent } from './rental-management/return/return-books/return-books.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -14,10 +15,13 @@ const routes: Routes = [
     { path: 'member', component: MemberResultComponent }
   ]},
   { path: 'borrow-books/:id', component: BorrowBooksComponent},
-  { path: 'return', component: ReturnComponent },
+  { path: 'return', component: ReturnComponent, children: [
+    { path: 'member', component: MemberResultComponent }
+  ]},
+  { path: 'return-books/:id', component: ReturnBooksComponent},
   { path: 'member', component: MemberInfoComponent },
   { path: 'search', component: MemberSearchComponent, children: [
-    { path: 'result', component: MemberResultComponent },
+    { path: 'member', component: MemberResultComponent },
     { path: ':id/edit', component: MemberInfoComponent }
   ]},
 ];

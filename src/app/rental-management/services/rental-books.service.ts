@@ -14,6 +14,11 @@ export class RentalBooksService {
     return this.rentalBooks.slice();
   }
 
+  deleteBook(index: number) {
+    this.rentalBooks.splice(index, 1);
+    this.newRental.next(this.getRentalBooks());
+  }
+
   clearBooks() {
     this.rentalBooks = [];
   }

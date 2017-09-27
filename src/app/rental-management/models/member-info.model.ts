@@ -4,6 +4,7 @@ import { RentalBook } from './rental-book.model';
 
 export class MemberInfo {
   public _id: string;
+  public rentalBooks: Array<RentalBook> = [];
   
   constructor(
     public memberNumber: string,

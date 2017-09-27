@@ -22,11 +22,6 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-2">
-          <button style="margin-bottom: 10px" type="button" class="btn btn-success" (click)="onAddChild()">Add More Child</button>
-        </div>
-      </div>
       <div class="row" formArrayName="children">
         <div class="panel panel-default" *ngFor="let childForm of childrenFormArray.controls; let i = index" [formGroup]="childForm">
           <div class="panel-heading">Child {{i + 1}}</div>
@@ -54,6 +49,11 @@
             </div>
             <button style="margin-top: 25px" class="btn btn-danger" (click)="onDeleteChild(i)">Delete</button>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-2">
+          <button style="margin-bottom: 10px" type="button" class="btn btn-success" (click)="onAddChild()">Add More Child</button>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MemberInfoService } from '../rental-management/services/member-info.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { MemberInfo } from '../rental-management/models/member-info.model';
 
 @Component({
   selector: 'app-member-info',
@@ -23,10 +24,10 @@ export class MemberInfoComponent implements OnInit {
     this.initForm();
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
-        const index = params.id;
+        const id = params.id;
         this.editMode = true;
         this.buttonText = "Update";
-        const memberInfo = this.miService.getMemberById(index);
+        const memberInfo = this.miService.getMemberById(id);
         console.log(memberInfo);
         this.memberInfoForm.patchValue({
           memberNumber: memberInfo.memberNumber,
@@ -78,10 +79,31 @@ export class MemberInfoComponent implements OnInit {
   onSaveMember() {
     console.log(this.memberInfoForm.value);
     if(this.editMode)
-      this.miService.updateMember(this.memberInfoForm.value);
+      this.miService.updateMember(this.createMemberFromFormValue());
     else 
-      this.miService.addMember(this.memberInfoForm.value);
+      this.miService.addMember(this.createMemberFromFormValue());
     this.editMode = false;
     this.buttonText = "Save";
+  }
+
+  private createMemberFromFormValue() {
+    const formValue = this.memberInfoForm.value;
+    const memberNumber = formValue.memberNumber;
+    const parentName = formValue.parentName;
+    const mobile = formValue.mobile;
+    const children = formValue.children;
+    const eReader = formValue.eReader;
+    const deposit = formValue.deposit;
+    const expiryDate = formValue.expiryDate;
+    const memberInfo = new MemberInfo(
+      memberNumber, 
+      parentName, 
+      mobile,
+      children,
+      eReader,
+      deposit,
+      expiryDate
+    );
+    return memberInfo;
   }
 }

@@ -23,9 +23,13 @@ export class SearchHeaderComponent implements OnInit {
     const parentName = fm.value.parentName;
     const mobile = fm.value.mobile;
     const serialNumber = fm.value.serialNumber;
-    if (this.router.url.includes("/search"))
-      this.router.navigate(['result'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
-    else {
+    let url = this.router.url;
+    if (url.includes("/search"))
+      this.router.navigate(['member'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
+    else if (url.includes("/borrow")) {
+      this.router.navigate(['member'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
+    }
+    else if (url.includes('/return')) {
       this.router.navigate(['member'], {relativeTo: this.route, queryParams: {parentName, mobile, serialNumber}});
     }
   }

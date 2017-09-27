@@ -1,7 +1,10 @@
 import { MemberInfo } from '../models/member-info.model';
 import { SearchQuery } from '../models/search-query.model';
+import { RentalBook } from '../models/rental-book.model';
+import { Subject } from 'rxjs/Subject';
 
-export class MemberInfoService {
+export class MemberInfoService {  
+  updateRentalBooks = new Subject<RentalBook[]>();
   members: Array<MemberInfo> = [{
     _id: "12345",
     memberNumber: "123456",
@@ -14,7 +17,8 @@ export class MemberInfoService {
     }],
     eReader: {model: "S800", serialNumber: "123456", purchasingDate: new Date('11/06/2015')},
     deposit: 100,
-    expiryDate: new Date('01/01/2018')
+    expiryDate: new Date('01/01/2018'),
+    rentalBooks: []
   }];
 
   addMember(memberInfo: MemberInfo) {
@@ -46,8 +50,10 @@ export class MemberInfoService {
     return [];
   }
 
-  getMemberById(index: number) {
-    return this.members[index];
+  getMemberById(id: string) {
+    return this.members.find((elem: MemberInfo) => {
+      return elem.mobile === id;
+    });
   }
 
   private searchForMember(property: string, query: string) {
@@ -71,5 +77,20 @@ export class MemberInfoService {
 
   getMembers() {
     return this.members.slice();
+  }
+
+  setRentalBooks(id: string, rentalBooks: Array<RentalBook>) {
+    console.log(this.members);
+    this.getMemberById(id).rentalBooks.push(...rentalBooks);
+  }
+
+  returnRentalBooks(id: string, bIndex: number) {
+    const memberInfo = this.getMemberById(id);
+    memberInfo.rentalBooks[bIndex].returnDate = new Date();
+    this.updateRentalBooks.next(memberInfo.rentalBooks);
+  }
+
+  getRentalBooks(id: string) {
+    return this.getMemberById(id).rentalBooks.slice();
   }
 }
