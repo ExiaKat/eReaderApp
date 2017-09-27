@@ -12,7 +12,7 @@ export class SearchHeaderComponent implements OnInit {
 
   constructor(private router: Router, 
               private route: ActivatedRoute,
-              private miService: MemberInfoService) { }
+              private miService: MemberInfoService) {}
 
   ngOnInit() {
   }

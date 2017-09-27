@@ -47,7 +47,8 @@ export class MemberInfoService {
       return this.searchForMember("mobile", mobile);
     if (serialNumber)
       return this.searchForMember("serialNumber", serialNumber);
-    return [];
+    return this.members.slice();
+    
   }
 
   getMemberById(id: string) {
