@@ -14,7 +14,7 @@ export class ReturnBooksComponent implements OnInit {
   memberInfo: MemberInfo;
   rentalBooks: Array<RentalBook>;
   rbSubscription: Subscription;
-  memberId: string;
+  index: number;
 
   constructor(private miService: MemberInfoService,
               private route: ActivatedRoute) { }
@@ -22,11 +22,11 @@ export class ReturnBooksComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       if(params.id) {
-        this.memberId = params.id;
-        this.memberInfo = this.miService.getMemberById(this.memberId);
+        this.index = params.id;
+        this.memberInfo = this.miService.getMemberById(this.index);
       }
     });
-    this.rentalBooks = this.miService.getRentalBooks(this.memberId);
+    this.rentalBooks = this.miService.getRentalBooks(this.index);
     this.rbSubscription = this.miService.updateRentalBooks
       .subscribe((rentalBooks: Array<RentalBook>) => {
         this.rentalBooks = rentalBooks;
@@ -34,6 +34,6 @@ export class ReturnBooksComponent implements OnInit {
   }
 
   onReturnBook(index: number) {
-    this.miService.returnRentalBooks(this.memberId, index);
+    this.miService.returnRentalBooks(this.index, index);
   }
 }

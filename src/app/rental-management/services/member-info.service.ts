@@ -1,100 +1,84 @@
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+
 import { MemberInfo } from '../models/member-info.model';
 import { SearchQuery } from '../models/search-query.model';
 import { RentalBook } from '../models/rental-book.model';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs';
 
+@Injectable()
 export class MemberInfoService {  
   updateRentalBooks = new Subject<RentalBook[]>();
-  members: Array<MemberInfo> = [{
-    _id: "12345",
-    memberNumber: "123456",
-    parentName: "Xia Hongfeng",
-    mobile: "15962606201",
-    children: [{
-      childName: "Xia Xuelan",
-      dob: new Date('03/05/2012'),
-      gender: "female"
-    }],
-    eReader: {model: "S800", serialNumber: "123456", purchasingDate: new Date('11/06/2015')},
-    deposit: 100,
-    expiryDate: new Date('01/01/2018'),
-    rentalBooks: []
-  }];
+  members: Array<MemberInfo>
 
-  addMember(memberInfo: MemberInfo) {
-    this.members.push(memberInfo);
-    alert(`New member ${memberInfo.parentName} saved successfully!`)
+  constructor(private http: Http) {}
+
+  addMember(memberInfo: MemberInfo) { 
+    this.http.post('http://localhost:3000/api/member', memberInfo)
+      .subscribe((res: Response) => {
+        alert(`New member ${memberInfo.parentName} saved successfully!
+              ${res.status}`)
+      }, err => {
+        console.log(err);
+      });
   }
 
-  updateMember(newMemberInfo: MemberInfo) {
-    let index = this.members.findIndex(element => {
-      //TODO change to use _id when connecting to database
-      // return element._id === newMemberInfo._id;
-      return element.mobile === newMemberInfo.mobile;
-    })
-    if (index !== -1)
-      this.members.splice(index, 1, newMemberInfo);
+  updateMember(index: number, newMemberInfo: MemberInfo) {
+    const id = this.members[index]._id;
+    let url = `http://localhost:3000/api/member/${id}`;
+    this.http.patch(url, newMemberInfo)
+      .map((res: Response) => res.json().member as MemberInfo)
+      .subscribe(
+        (member: MemberInfo) => console.log("updated member info", member),
+        (err) => console.log(`Failed to update member ${this.members[index].parentName}`, err)
+      );
   }
 
   deleteMember(index: number) {
-    this.members.splice(index, 1);
+    const id = this.members[index]._id;
+    let url = `http://localhost:3000/api/member/${id}`;
+    return this.http.delete(url)
+      .map((res: Response) => res.json().member as MemberInfo);
   }
 
   getMember(queryArgs: SearchQuery) {
-    let parentName = queryArgs.parentName == "" ? null : queryArgs.parentName;
-    let mobile = queryArgs.mobile == "" ? null : queryArgs.mobile;
-    let serialNumber = queryArgs.serialNumber == "" ? null : queryArgs.serialNumber;
-    if (parentName)
-      return this.searchForMember("parentName", parentName);
-    if (mobile)
-      return this.searchForMember("mobile", mobile);
-    if (serialNumber)
-      return this.searchForMember("serialNumber", serialNumber);
-    return this.members.slice();
-    
+    const { parentName, mobile, serialNumber } = queryArgs;
+    let url = `http://localhost:3000/api/member?parentName=${parentName}&mobile=${mobile}&serialNumber=${serialNumber}`
+    return this.http.get(url)
+      .map((res: Response) => res.json().members as MemberInfo[])
+      .do((members: MemberInfo[]) => this.members = members);    
   }
 
-  getMemberById(id: string) {
-    return this.members.find((elem: MemberInfo) => {
-      return elem.mobile === id;
-    });
+  getMemberById(index: number) {
+    return this.members[index];
   }
-
-  private searchForMember(property: string, query: string) {
-    let memberArray: Array<MemberInfo> = [];
-    if (property === "serialNumber") {
-      this.members.forEach((memberInfo: MemberInfo) => {
-        if (memberInfo.eReader[property] === query) {
-          memberArray.push(memberInfo);
-        }
-      });
-    }
-    else if (query) {
-      this.members.forEach((memberInfo: MemberInfo) => {
-        if (memberInfo[property] === query) {
-          memberArray.push(memberInfo);
-        }
-      });
-    }
-    return memberArray;
-  }
-
+  
   getMembers() {
     return this.members.slice();
   }
 
-  setRentalBooks(id: string, rentalBooks: Array<RentalBook>) {
+  setRentalBooks(index: number, rentalBooks: Array<RentalBook>) {
     console.log(this.members);
-    this.getMemberById(id).rentalBooks.push(...rentalBooks);
+    let member = this.getMemberById(index);
+    let filteredRentalBooks = rentalBooks.filter(rentalBook => {
+      let index = member.rentalBooks.findIndex(elem => {
+        return elem.bookName === rentalBook.bookName;
+      });  
+      return index == -1;
+    });
+    member.rentalBooks.push(...filteredRentalBooks);
+    this.updateMember(index, member);
   }
 
-  returnRentalBooks(id: string, bIndex: number) {
-    const memberInfo = this.getMemberById(id);
+  returnRentalBooks(index: number, bIndex: number) {
+    const memberInfo = this.getMemberById(index);
     memberInfo.rentalBooks[bIndex].returnDate = new Date();
     this.updateRentalBooks.next(memberInfo.rentalBooks);
+    this.updateMember(index, memberInfo);
   }
 
-  getRentalBooks(id: string) {
-    return this.getMemberById(id).rentalBooks.slice();
+  getRentalBooks(index: number) {
+    return this.getMemberById(index).rentalBooks.slice();
   }
 }

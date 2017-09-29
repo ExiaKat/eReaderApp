@@ -20,8 +20,8 @@
       <td>{{i+1}}</td>
       <td>{{rentalBook.bookName}}</td>
       <td>{{rentalBook.quantity}}</td>
-      <td>{{rentalBook.borrowDate.toLocaleDateString()}}</td>
-      <td>{{rentalBook.returnDate ? rentalBook.returnDate.toLocaleDateString() : ""}}</td>
+      <td>{{rentalBook.borrowDate}}</td>
+      <td>{{rentalBook.returnDate}}</td>
       <td>
         <!-- <a role="button" style="cursor: pointer">Edit</a> -->
         <a *ngIf="!rentalBook.returnDate" role="button" style="cursor: pointer" (click)="onReturnBook(i)">Return</a>

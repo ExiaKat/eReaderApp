@@ -15,7 +15,7 @@ import { MemberInfo } from '../../models/member-info.model';
 })
 export class BorrowBooksComponent implements OnInit, OnDestroy {
   rentalBooks: Array<RentalBook>;
-  memberId: string;
+  index: number;
   memberInfo: MemberInfo;
   subscription: Subscription;
 
@@ -26,8 +26,8 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
-        this.memberId = params.id;
-        this.memberInfo = this.miService.getMemberById(this.memberId);
+        this.index = params.id;
+        this.memberInfo = this.miService.getMemberById(this.index);
       }
       else {
         alert("No member id is provided for borrowing books");        
@@ -50,7 +50,7 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
   onSaveBooks() {
     const borrowedBooks = this.rbService.getRentalBooks();
     if (borrowedBooks.length > 0) {
-      this.miService.setRentalBooks(this.memberId, borrowedBooks);
+      this.miService.setRentalBooks(this.index, borrowedBooks);
       this.rbService.clearBooks();
     } 
     else  

@@ -14,6 +14,8 @@ export class MemberInfoComponent implements OnInit {
   memberInfoForm: FormGroup;
   editMode = false;
   buttonText = "Save";
+  index: number;
+
   get childrenFormArray() {
     return this.memberInfoForm.get("children") as FormArray;
   }
@@ -26,10 +28,10 @@ export class MemberInfoComponent implements OnInit {
     this.initForm();
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
-        const id = params.id;
+        this.index = params.id;
         this.editMode = true;
         this.buttonText = "Update";
-        const memberInfo = this.miService.getMemberById(id);
+        const memberInfo = this.miService.getMemberById(this.index);
         console.log(memberInfo);
         this.patchValueChildren(memberInfo.children);
         this.memberInfoForm.patchValue({
@@ -87,14 +89,20 @@ export class MemberInfoComponent implements OnInit {
   }
 
   onSaveMember() {
-    console.log(this.memberInfoForm);
+    // console.log(this.memberInfoForm);
     if(this.editMode)
-      this.miService.updateMember(this.createMemberFromFormValue());
+      this.miService.updateMember(this.index, this.memberInfoForm.value);
     else 
-      this.miService.addMember(this.createMemberFromFormValue());
+      this.miService.addMember(this.memberInfoForm.value);
     this.editMode = false;
     this.buttonText = "Save";
-    this.router.navigate(['/search']);
+  }
+
+  onDeleteMember() {
+    this.miService.deleteMember(this.index)
+      .subscribe((member: MemberInfo) => {
+        alert(`${member.parentName} has been deleted!`);
+      }, err => console.log(err));
   }
 
   private createMemberFromFormValue() {
