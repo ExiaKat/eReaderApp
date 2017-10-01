@@ -18,6 +18,7 @@ import { MemberResultComponent } from './member-search/member-result/member-resu
 import { MemberInfoService } from './rental-management/services/member-info.service';
 import { BorrowBooksComponent } from './rental-management/borrow/borrow-books/borrow-books.component';
 import { ReturnBooksComponent } from './rental-management/return/return-books/return-books.component';
+import { ToLocaleStringPipe } from './shared/to-locale-string.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ReturnBooksComponent } from './rental-management/return/return-books/re
     MemberSearchComponent,
     MemberResultComponent,
     BorrowBooksComponent,
-    ReturnBooksComponent
+    ReturnBooksComponent,
+    ToLocaleStringPipe
   ],
   imports: [
     BrowserModule,

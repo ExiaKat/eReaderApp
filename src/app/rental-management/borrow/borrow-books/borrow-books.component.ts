@@ -18,6 +18,7 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
   index: number;
   memberInfo: MemberInfo;
   subscription: Subscription;
+  defaultQty = 1;
 
   constructor(private rbService: RentalBooksService,
               private route: ActivatedRoute,

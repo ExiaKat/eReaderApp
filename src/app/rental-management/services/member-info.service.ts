@@ -6,6 +6,7 @@ import { SearchQuery } from '../models/search-query.model';
 import { RentalBook } from '../models/rental-book.model';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs';
+import { Child } from '../models/child.model';
 
 @Injectable()
 export class MemberInfoService {  
@@ -46,8 +47,35 @@ export class MemberInfoService {
     const { parentName, mobile, serialNumber } = queryArgs;
     let url = `http://localhost:3000/api/member?parentName=${parentName}&mobile=${mobile}&serialNumber=${serialNumber}`
     return this.http.get(url)
-      .map((res: Response) => res.json().members as MemberInfo[])
-      .do((members: MemberInfo[]) => this.members = members);    
+      .map((res: Response) => {
+        let members: MemberInfo[] = res.json().members;
+        members.forEach((member: MemberInfo) => {
+          member.children.forEach((child: Child) => {
+            child.dob = new Date(child.dob);
+          });
+          let purchasingDate = member.eReader.purchasingDate;
+          let expiryDate = member.expiryDate;
+          member.eReader.purchasingDate = this.convertToDateObject(purchasingDate);
+          member.expiryDate = this.convertToDateObject(expiryDate);
+          member.rentalBooks.forEach((book: RentalBook) => {
+            let borrowDate = book.borrowDate;
+            let returnDate = book.returnDate;
+            book.borrowDate = this.convertToDateObject(borrowDate);
+            book.returnDate = this.convertToDateObject(returnDate);
+          });
+        });
+        return members;
+      })
+      .do((members: MemberInfo[]) => {
+        this.members = members;
+        console.log(this.members);
+      });    
+  }
+
+  private convertToDateObject(dateString: any) {
+    if (!dateString || "") return null;
+    let date = new Date(dateString);
+    return date;
   }
 
   getMemberById(index: number) {
@@ -81,4 +109,5 @@ export class MemberInfoService {
   getRentalBooks(index: number) {
     return this.getMemberById(index).rentalBooks.slice();
   }
+
 }

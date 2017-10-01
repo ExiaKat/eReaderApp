@@ -38,9 +38,13 @@ export class MemberInfoComponent implements OnInit {
           memberNumber: memberInfo.memberNumber,
           parentName: memberInfo.parentName,
           mobile: memberInfo.mobile,
-          eReader: memberInfo.eReader,
+          eReader: {
+            model: memberInfo.eReader.model,
+            serialNumber: memberInfo.eReader.serialNumber,
+            purchasingDate: memberInfo.eReader.purchasingDate ? memberInfo.eReader.purchasingDate.toISOString().substring(0, 10) : ""
+          },
           deposit: memberInfo.deposit,
-          exiryDate: memberInfo.expiryDate
+          expiryDate: memberInfo.expiryDate ? memberInfo.expiryDate.toISOString().substring(0,10) : ""
         });
       }
     });
@@ -67,7 +71,8 @@ export class MemberInfoComponent implements OnInit {
 
     if(child) {
       childName = child.childName;
-      dob = child.dob;
+      dob = child.dob.toISOString().substring(0,10);
+      console.log(dob);
       gender = child.gender;
     }
     this.childrenFormArray.push(new FormGroup({
@@ -89,13 +94,14 @@ export class MemberInfoComponent implements OnInit {
   }
 
   onSaveMember() {
-    // console.log(this.memberInfoForm);
+    console.log(this.memberInfoForm);
     if(this.editMode)
       this.miService.updateMember(this.index, this.memberInfoForm.value);
     else 
       this.miService.addMember(this.memberInfoForm.value);
     this.editMode = false;
     this.buttonText = "Save";
+    this.router.navigate(['/search']);
   }
 
   onDeleteMember() {
@@ -103,26 +109,5 @@ export class MemberInfoComponent implements OnInit {
       .subscribe((member: MemberInfo) => {
         alert(`${member.parentName} has been deleted!`);
       }, err => console.log(err));
-  }
-
-  private createMemberFromFormValue() {
-    const formValue = this.memberInfoForm.value;
-    const memberNumber = formValue.memberNumber;
-    const parentName = formValue.parentName;
-    const mobile = formValue.mobile;
-    const children = formValue.children;
-    const eReader = formValue.eReader;
-    const deposit = formValue.deposit;
-    const expiryDate = formValue.expiryDate;
-    const memberInfo = new MemberInfo(
-      memberNumber, 
-      parentName, 
-      mobile,
-      children,
-      eReader,
-      deposit,
-      expiryDate
-    );
-    return memberInfo;
-  }
+  }  
 }

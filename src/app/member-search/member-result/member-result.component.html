@@ -4,10 +4,10 @@
       <a class="list-group-item" (click)="onSelectMember(i)">
         <h3>{{memberInfo.parentName}} </h3>
         <small>{{memberInfo.mobile}}</small>
-        <p *ngFor="let child of memberInfo.children">
+        <p i18n="@@childNameInResult" *ngFor="let child of memberInfo.children">
           Child Name: {{child.childName}}
         </p>
-        <p>e-Reader model: {{memberInfo.eReader.model}}, {{memberInfo.eReader.serialNumber}}</p>
+        <p i18n="@@eReaderModelInResult">e-Reader model: {{memberInfo.eReader.model}}, {{memberInfo.eReader.serialNumber}}</p>
       </a>
     </ul>
   </div>

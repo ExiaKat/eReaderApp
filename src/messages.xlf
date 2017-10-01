@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="welcomeMessage" datatype="html">
+        <source>Welcome to e-Reader book rental management system</source>
+        <target>易读宝读书借阅管理系统</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\home-page\home-page.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="memberInfo" datatype="html">
+        <source>Member Info</source>
+        <target>用户信息</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="memberNumber" datatype="html">
+        <source>Member Number</source>
+        <target>会员号码</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="parentName" datatype="html">
+        <source>Parent Name</source>
+        <target>家长姓名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mobileNumber" datatype="html">
+        <source>Mobile Number</source>
+        <target>手机号码</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ChildNumber" datatype="html">
+        <source>Child <x id="INTERPOLATION"/></source>
+        <target>孩子 <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childName" datatype="html">
+        <source>Child Name</source>
+        <target>孩子姓名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dob" datatype="html">
+        <source>D.O.B.</source>
+        <target>出生年月</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="gender" datatype="html">
+        <source>Gender</source>
+        <target>性别</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="male" datatype="html">
+        <source>Male</source>
+        <target>男</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="female" datatype="html">
+        <source>female</source>
+        <target>女</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childDeleteButtonText" datatype="html">
+        <source>Delete</source>
+        <target>删除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childAddButtonText" datatype="html">
+        <source>Add Child</source>
+        <target>添加儿童</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderInfo" datatype="html">
+        <source>e-Reader Info</source>
+        <target>易读宝信息</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderModel" datatype="html">
+        <source>e-Reader Model</source>
+        <target>所购机型</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderSerialNumber" datatype="html">
+        <source>e-Reader S/N</source>
+        <target>机身号</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="purchasingDate" datatype="html">
+        <source>Purchasing Date</source>
+        <target>购买日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rentalInfo" datatype="html">
+        <source>Rental Info</source>
+        <target>借阅信息</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deposit" datatype="html">
+        <source>Deposit</source>
+        <target>押金（元）</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="expiryDate" datatype="html">
+        <source>Expiry Date</source>
+        <target>借阅到期日</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="saveOrUpdateMemberButtonText" datatype="html">
+        <source>{VAR_SELECT, select, Save {Save} Update {Update} }</source>
+        <target>{VAR_SELECT, select, Save {保存} Update {更新} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteMemberButtonText" datatype="html">
+        <source>Delete</source>
+        <target>删除会员</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-info\member-info.component.ts</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childNameInResult" datatype="html">
+        <source>
+          Child Name: <x id="INTERPOLATION"/>
+        </source>
+        <target>
+          孩子姓名：<x id="INTERPOLATION"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-search\member-result\member-result.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderModelInResult" datatype="html">
+        <source>e-Reader model: <x id="INTERPOLATION"/>, <x id="INTERPOLATION_1"/></source>
+        <target>易读宝型号: <x id="INTERPOLATION"/>, <x id="INTERPOLATION_1"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\member-search\member-result\member-result.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="parentNameInBorrow" datatype="html">
+        <source>Parent Name: <x id="INTERPOLATION"/></source>
+        <target>家长姓名: <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mobileInBorrow" datatype="html">
+        <source>Mobile: <x id="INTERPOLATION"/></source>
+        <target>手机号码: <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childNumberInBorrow" datatype="html">
+        <source>Child<x id="INTERPOLATION"/>:</source>
+        <target>孩子<x id="INTERPOLATION"/>:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="genderInBorrow" datatype="html">
+        <source>gender:</source>
+        <target>性别：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dobInBorrow" datatype="html">
+        <source>D.O.B.</source>
+        <target>出生日期：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookNameInBorrow" datatype="html">
+        <source>Book Name: </source>
+        <target>书名： </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quantityInBorrow" datatype="html">
+        <source>Quantity: </source>
+        <target>数量</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="borrowBookInBorrow" datatype="html">
+        <source>Borrow Book</source>
+        <target>借阅</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="saveBookInBorrow" datatype="html">
+        <source>Save</source>
+        <target>保存借阅书本</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookNameTableHeading" datatype="html">
+        <source>Book Name</source>
+        <target>书名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quantityTableHeading" datatype="html">
+        <source>Qantity</source>
+        <target>数量</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="borrowDateTableHeading" datatype="html">
+        <source>Borrow Date</source>
+        <target>借阅日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="returnDateTableHeading" datatype="html">
+        <source>Return Date</source>
+        <target>还书日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteInBorrow" datatype="html">
+        <source>Delete</source>
+        <target>删除</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\borrow\borrow-books\borrow-books.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="parentNameInReturn" datatype="html">
+        <source>Parent Name: <x id="INTERPOLATION"/></source>
+        <target>家长姓名： <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mobileInReturn" datatype="html">
+        <source>Mobile: <x id="INTERPOLATION"/></source>
+        <target>手机号码： <x id="INTERPOLATION"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="childNumberInReturn" datatype="html">
+        <source>Child<x id="INTERPOLATION"/>:</source>
+        <target>孩子<x id="INTERPOLATION"/>:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="genderInReturn" datatype="html">
+        <source>gender:</source>
+        <target>性别：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dobInReturn" datatype="html">
+        <source>D.O.B.</source>
+        <target>出生日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bookNameTableHeadingInReturn" datatype="html">
+        <source>Book Name</source>
+        <target>书名</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="quantityTableHeadingInReturn" datatype="html">
+        <source>Qantity</source>
+        <target>数量</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="borrowDateTableHeadingInReturn" datatype="html">
+        <source>Borrow Date</source>
+        <target>借阅日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="returnDateTableHeadingInReturn" datatype="html">
+        <source>Return Date</source>
+        <target>还书日期</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="returnButtonTextInReturn" datatype="html">
+        <source>Return</source>
+        <target>还书</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\return\return-books\return-books.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderBrand" datatype="html">
+        <source>e-Reader</source>
+        <target>易读宝</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="borrow" datatype="html">
+        <source>Borrow</source>
+        <target>借阅</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="return" datatype="html">
+        <source>Return</source>
+        <target>还书</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="memberDropdown" datatype="html">
+        <source>Member <x id="START_BOLD_TEXT" ctype="x-b"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/></source>
+        <target>会员 <x id="START_BOLD_TEXT" ctype="x-b"/><x id="CLOSE_BOLD_TEXT" ctype="x-b"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="newMember" datatype="html">
+        <source>New Member</source>
+        <target>新增会员</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="editMember" datatype="html">
+        <source>Edit Member</source>
+        <target>修改会员</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\navbar\navbar.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="parentNameInSearchHead" datatype="html">
+        <source>Parent Name:</source>
+        <target>家长姓名：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\search-header\search-header.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mobileInSearchHead" datatype="html">
+        <source>Mobile:</source>
+        <target>手机号码：</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\search-header\search-header.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eReaderSerialNumberInSearchHead" datatype="html">
+        <source>e-Reader S/N:</source>
+        <target>易读宝机身号</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\search-header\search-header.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="searchInSearchHead" datatype="html">
+        <source>Search</source>
+        <target>查询</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app\rental-management\search-header\search-header.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
