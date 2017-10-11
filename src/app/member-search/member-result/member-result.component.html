@@ -1,13 +1,23 @@
 <div class="row">
   <div class="col-xs-12">
-    <ul class="list-group" *ngFor="let memberInfo of memberInfos; let i = index">
-      <a class="list-group-item" (click)="onSelectMember(i)">
-        <h3>{{memberInfo.parentName}} </h3>
-        <small>{{memberInfo.mobile}}</small>
-        <p i18n="@@childNameInResult" *ngFor="let child of memberInfo.children">
-          Child Name: {{child.childName}}
-        </p>
-        <p i18n="@@eReaderModelInResult">e-Reader model: {{memberInfo.eReader.model}}, {{memberInfo.eReader.serialNumber}}</p>
+    <ul class="list-group">
+      <a class="list-group-item" (click)="onSelectMember(i)" *ngFor="let memberInfo of memberInfos; let i = index">
+        <div class="row">
+          <div class="col-xs-2">
+            <p>{{memberInfo.parentName}}</p>
+          </div>
+          <div class="col-xs-2">
+              <p>mobile: {{memberInfo.mobile}}</p>
+            </div>
+          <div class="col-xs-2">
+            <p i18n="@@childNameInResult" *ngFor="let child of memberInfo.children">
+            Child Name: {{child.childName}}
+          </p>
+          </div>
+          <div class="col-xs-4">
+            <p i18n="@@eReaderModelInResult">e-Reader model: {{memberInfo.eReader.model}} S/N: {{memberInfo.eReader.serialNumber}}</p>
+          </div>
+        </div>
       </a>
     </ul>
   </div>

@@ -1,5 +1,10 @@
 <form #fm="ngForm" (ngSubmit)="onSearch(fm)" >
   <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center text-primary">{{pageTitle}}</h3>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xs-12 col-md-3">
       <div class="form-group">
         <label i18n="@@parentNameInSearchHead" for="parentName">Parent Name:</label>

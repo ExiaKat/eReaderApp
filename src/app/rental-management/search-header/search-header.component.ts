@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberInfoService } from '../services/member-info.service';
@@ -9,6 +9,7 @@ import { MemberInfoService } from '../services/member-info.service';
   styleUrls: ['./search-header.component.css']
 })
 export class SearchHeaderComponent implements OnInit {
+  @Input() pageTitle: String;
 
   constructor(private router: Router, 
               private route: ActivatedRoute,

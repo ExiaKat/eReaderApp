@@ -25,12 +25,12 @@ export class MemberInfoComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.initForm();
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
         this.index = params.id;
         this.editMode = true;
         this.buttonText = "Update";
+        this.initForm();
         const memberInfo = this.miService.getMemberById(this.index);
         console.log(memberInfo);
         this.patchValueChildren(memberInfo.children);
@@ -47,15 +47,27 @@ export class MemberInfoComponent implements OnInit {
           expiryDate: memberInfo.expiryDate ? memberInfo.expiryDate.toISOString().substring(0,10) : ""
         });
       }
+      else {
+        this.initForm();
+      }
     });
   }
 
   private initForm() {
+    let childFormArray: FormGroup[] = [];
+    if (!this.editMode) {
+      childFormArray = [new FormGroup({
+          'childName': new FormControl(null, Validators.required),
+          'dob': new FormControl(null, Validators.required),
+          'gender': new FormControl(null, Validators.required),
+        })
+      ]
+    }
     this.memberInfoForm = new FormGroup({
       'memberNumber': new FormControl(null),
       'parentName': new FormControl(null, Validators.required),
       'mobile': new FormControl(null, Validators.required),
-      'children': new FormArray([]),
+      'children': new FormArray(childFormArray),
       'eReader': new FormGroup({
         'model': new FormControl(null, Validators.required),
         'serialNumber': new FormControl(null, Validators.required),
@@ -108,6 +120,7 @@ export class MemberInfoComponent implements OnInit {
     this.miService.deleteMember(this.index)
       .subscribe((member: MemberInfo) => {
         alert(`${member.parentName} has been deleted!`);
+        this.router.navigate(['/search']);
       }, err => console.log(err));
   }  
 }

@@ -53,7 +53,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-2">
-          <button i18n="@@childAddButtonText" style="margin-bottom: 10px" type="button" class="btn btn-success" (click)="onAddChild()">Add Child</button>
+          <button i18n="@@childAddButtonText" style="margin-bottom: 10px" type="button" class="btn btn-success" (click)="onAddChild()">Add More Child</button>
         </div>
       </div>
     </div>
@@ -102,9 +102,11 @@
       </div> 
     </div>
   </div>
-  <button i18n="@@saveOrUpdateMemberButtonText" 
-    type="submit" 
-    class="btn btn-primary" 
-    [disabled]="memberInfoForm.invalid">{buttonText, select, Save {Save} Update {Update}}</button>
-  <button i18n="@@deleteMemberButtonText" *ngIf="editMode" type="submit" class="btn btn-danger" (click)="onDeleteMember()">Delete</button>
+  <div class="pull-right">
+    <button i18n="@@saveOrUpdateMemberButtonText" 
+      type="submit" 
+      class="btn btn-primary" 
+      [disabled]="memberInfoForm.invalid">{buttonText, select, Save {Save} Update {Update}}</button>
+    <button i18n="@@deleteMemberButtonText" *ngIf="editMode" type="button" class="btn btn-danger" (click)="onDeleteMember()">Delete</button>
+  </div>
 </form>
