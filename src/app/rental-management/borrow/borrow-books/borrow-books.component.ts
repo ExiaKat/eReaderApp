@@ -44,7 +44,11 @@ export class BorrowBooksComponent implements OnInit, OnDestroy {
     const bookName = fm.value.bookName;
     const quantity = fm.value.quantity;
     const borrowDate = new Date();
-    this.rbService.borrowBook(bookName, quantity, borrowDate);
+    if (!this.miService.isBorrowedAndUnreturned(this.index, new RentalBook(bookName, quantity, borrowDate, null)))
+      this.rbService.borrowBook(bookName, quantity, borrowDate);
+    else {
+      alert(`Please return ${bookName} first before borrowing again`);
+    }
     fm.reset();
   }
 

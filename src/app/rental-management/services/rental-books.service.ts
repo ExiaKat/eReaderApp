@@ -4,9 +4,10 @@ import { Subject } from 'rxjs/Subject';
 export class RentalBooksService {
   rentalBooks: RentalBook[] = [];
   newRental = new Subject<RentalBook[]>();
-
+  
   borrowBook(bookName: string, quantity: number, borrowDate: Date, returnDate: Date = null) {
-    this.rentalBooks.push(new RentalBook(bookName, quantity, borrowDate, returnDate));
+    let book = new RentalBook(bookName, quantity, borrowDate, returnDate);
+    this.rentalBooks.push(book);
     this.newRental.next(this.getRentalBooks());
   }
 
@@ -21,5 +22,6 @@ export class RentalBooksService {
 
   clearBooks() {
     this.rentalBooks = [];
+    this.newRental.next(this.getRentalBooks());
   }
 }

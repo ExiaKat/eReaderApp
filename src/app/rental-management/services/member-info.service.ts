@@ -90,10 +90,7 @@ export class MemberInfoService {
     console.log(this.members);
     let member = this.getMemberById(index);
     let filteredRentalBooks = rentalBooks.filter(rentalBook => {
-      let index = member.rentalBooks.findIndex(elem => {
-        return elem.bookName === rentalBook.bookName;
-      });  
-      return index == -1;
+      return !this.isBorrowedAndUnreturned(index, rentalBook);
     });
     member.rentalBooks.push(...filteredRentalBooks);
     this.updateMember(index, member);
@@ -108,6 +105,13 @@ export class MemberInfoService {
 
   getRentalBooks(index: number) {
     return this.getMemberById(index).rentalBooks.slice();
+  }
+
+  isBorrowedAndUnreturned(index: number, book: RentalBook) {
+    return this.getMemberById(index).rentalBooks.findIndex(
+      (bookElem: RentalBook) => {
+      return bookElem.bookName === book.bookName && bookElem.returnDate === null
+    }) !== -1
   }
 
 }
