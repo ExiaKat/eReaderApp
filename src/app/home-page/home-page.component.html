@@ -1,1 +1,3 @@
 <h3 i18n="@@welcomeMessage">Welcome to e-Reader book rental management system</h3>
+<app-login *ngIf="!isAuthenticated"></app-login>
+<button *ngIf="isAuthenticated" type="button" class="btn btn-primary" (click)="onLogout()">Log Out</button>

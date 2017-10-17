@@ -12,11 +12,16 @@ import { Child } from '../models/child.model';
 export class MemberInfoService {  
   updateRentalBooks = new Subject<RentalBook[]>();
   members: Array<MemberInfo>
+  localhost = "localhost";
 
   constructor(private http: Http) {}
 
+  private getToken() : Headers {
+    return new Headers({'x-auth': window.sessionStorage.getItem('jwt')});
+  }
+
   addMember(memberInfo: MemberInfo) { 
-    this.http.post('http://localhost:3000/api/member', memberInfo)
+    this.http.post(`http://${this.localhost}:3000/api/member`, memberInfo, {headers: this.getToken()})
       .subscribe((res: Response) => {
         alert(`New member ${memberInfo.parentName} saved successfully!
               ${res.status}`)
@@ -27,8 +32,8 @@ export class MemberInfoService {
 
   updateMember(index: number, newMemberInfo: MemberInfo) {
     const id = this.members[index]._id;
-    let url = `http://localhost:3000/api/member/${id}`;
-    this.http.patch(url, newMemberInfo)
+    let url = `http://${this.localhost}:3000/api/member/${id}`;
+    this.http.patch(url, newMemberInfo, {headers: this.getToken()})
       .map((res: Response) => res.json().member as MemberInfo)
       .subscribe(
         (member: MemberInfo) => console.log("updated member info", member),
@@ -38,15 +43,15 @@ export class MemberInfoService {
 
   deleteMember(index: number) {
     const id = this.members[index]._id;
-    let url = `http://localhost:3000/api/member/${id}`;
-    return this.http.delete(url)
+    let url = `http://${this.localhost}:3000/api/member/${id}`;
+    return this.http.delete(url, {headers: this.getToken()})
       .map((res: Response) => res.json().member as MemberInfo);
   }
 
   getMember(queryArgs: SearchQuery) {
     const { parentName, mobile, serialNumber } = queryArgs;
-    let url = `http://localhost:3000/api/member?parentName=${parentName}&mobile=${mobile}&serialNumber=${serialNumber}`
-    return this.http.get(url)
+    let url = `http://${this.localhost}:3000/api/member?parentName=${parentName}&mobile=${mobile}&serialNumber=${serialNumber}`
+    return this.http.get(url, {headers: this.getToken()})
       .map((res: Response) => {
         let members: MemberInfo[] = res.json().members;
         members.forEach((member: MemberInfo) => {

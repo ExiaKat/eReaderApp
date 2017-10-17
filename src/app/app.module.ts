@@ -19,6 +19,9 @@ import { MemberInfoService } from './rental-management/services/member-info.serv
 import { BorrowBooksComponent } from './rental-management/borrow/borrow-books/borrow-books.component';
 import { ReturnBooksComponent } from './rental-management/return/return-books/return-books.component';
 import { ToLocaleStringPipe } from './shared/to-locale-string.pipe';
+import { LoginComponent } from './home-page/login/login.component';
+import { AuthService } from './home-page/login/auth.service';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { ToLocaleStringPipe } from './shared/to-locale-string.pipe';
     MemberResultComponent,
     BorrowBooksComponent,
     ReturnBooksComponent,
-    ToLocaleStringPipe
+    ToLocaleStringPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { ToLocaleStringPipe } from './shared/to-locale-string.pipe';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [RentalBooksService, MemberInfoService],
+  providers: [RentalBooksService, MemberInfoService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

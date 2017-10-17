@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  
+  // @HostListener("window:unload", ['$event'])
+  // onCloseWindow(event) {
+  //   window.localStorage.removeItem('jwt');
+  // }
 }
