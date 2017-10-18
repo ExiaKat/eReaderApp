@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class AuthService {
+export class AuthService{
   token: string = "";
   authenticate = new Subject<string>();
   localhost = "localhost";
@@ -36,9 +36,5 @@ export class AuthService {
         this.token = "";
         this.authenticate.next("");
       });
-  }
-
-  isAuthenticated() {
-    return this.token !== "" ? true : false;
   }
 }

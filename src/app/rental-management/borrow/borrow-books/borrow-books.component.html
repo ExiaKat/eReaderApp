@@ -26,9 +26,10 @@
           type="number" 
           id="quantity" 
           class="form-control" 
-          name="quantity" 
-          [ngModel]="defaultQty"
-          required>
+          name="quantity"
+          ngModel
+          required
+          min="1">
       </div>
       <button i18n="@@borrowBookInBorrow" type="submit" class="btn btn-primary" [disabled]="fm.invalid">Add Book</button>
       <button i18n="@@saveBookInBorrow" type="button" class="btn btn-success" (click)="onSaveBooks()">Save</button>

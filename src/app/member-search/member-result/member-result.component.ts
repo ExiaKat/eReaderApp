@@ -21,6 +21,7 @@ export class MemberResultComponent implements OnInit {
       this.miService.getMember(queryParams)
         .subscribe((members: MemberInfo[]) => {
           this.memberInfos = members;
+          if (this.memberInfos.length == 0) alert("Member not found");
         }, err => console.log(err));
     });
   }

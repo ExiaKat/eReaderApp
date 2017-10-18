@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './return-books.component.html',
   styleUrls: ['./return-books.component.css']
 })
-export class ReturnBooksComponent implements OnInit {
+export class ReturnBooksComponent implements OnInit{
   memberInfo: MemberInfo;
   rentalBooks: Array<RentalBook>;
   rbSubscription: Subscription;
@@ -36,4 +36,5 @@ export class ReturnBooksComponent implements OnInit {
   onReturnBook(index: number) {
     this.miService.returnRentalBooks(this.index, index);
   }
+
 }

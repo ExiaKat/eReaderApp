@@ -6,7 +6,13 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 export class openDropdownDirective {
   @HostBinding('class.open') isOpen = false;
 
-  @HostListener('click') toggleDropdown() {
+  @HostListener('mouseenter') toggleDropdown() {
     this.isOpen = !this.isOpen;
+  }
+
+  @HostListener('mouseleave') closeDropdown() {
+    if (this.isOpen) {
+      this.isOpen = false;
+    }
   }
 }

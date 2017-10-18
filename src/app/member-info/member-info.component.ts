@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Response } from '@angular/http';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+
 import { MemberInfoService } from '../rental-management/services/member-info.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MemberInfo } from '../rental-management/models/member-info.model';
 import { Child } from '../rental-management/models/child.model';
+import { CanComponentDeactivate } from '../shared/can-deactivate-guard.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-member-info',
   templateUrl: './member-info.component.html',
   styleUrls: ['./member-info.component.css']
 })
-export class MemberInfoComponent implements OnInit {
+export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
   memberInfoForm: FormGroup;
   editMode = false;
   buttonText = "Save";
   index: number;
+  isSavedOrUpdated = false;
 
   get childrenFormArray() {
     return this.memberInfoForm.get("children") as FormArray;
@@ -32,7 +37,6 @@ export class MemberInfoComponent implements OnInit {
         this.buttonText = "Update";
         this.initForm();
         const memberInfo = this.miService.getMemberById(this.index);
-        console.log(memberInfo);
         this.patchValueChildren(memberInfo.children);
         this.memberInfoForm.patchValue({
           memberNumber: memberInfo.memberNumber,
@@ -84,7 +88,6 @@ export class MemberInfoComponent implements OnInit {
     if(child) {
       childName = child.childName;
       dob = child.dob.toISOString().substring(0,10);
-      console.log(dob);
       gender = child.gender;
     }
     this.childrenFormArray.push(new FormGroup({
@@ -106,21 +109,43 @@ export class MemberInfoComponent implements OnInit {
   }
 
   onSaveMember() {
-    console.log(this.memberInfoForm);
     if(this.editMode)
-      this.miService.updateMember(this.index, this.memberInfoForm.value);
+      this.miService.updateMember(this.index, this.memberInfoForm.value)      
+        .subscribe(
+          (member: MemberInfo) => {
+            this.isSavedOrUpdated = true;
+            alert(`${this.memberInfoForm.value.parentName} has been updated.`);
+            this.router.navigate(['search']);
+          },
+          (err) => console.log(`Failed to update ${this.memberInfoForm.value.parentName}`, err)
+        );
     else 
-      this.miService.addMember(this.memberInfoForm.value);
+      this.miService.addMember(this.memberInfoForm.value)
+      .subscribe((res: Response) => {
+        this.isSavedOrUpdated = true;
+        alert(`New member ${this.memberInfoForm.value.parentName} saved successfully!`);
+        this.router.navigate(['search']);
+      }, err => {
+        console.log(`Failed to save ${this.memberInfoForm.value.parentName}`, err);
+      });;
     this.editMode = false;
     this.buttonText = "Save";
-    this.router.navigate(['/search']);
+    this.isSavedOrUpdated = false; 
   }
 
   onDeleteMember() {
     this.miService.deleteMember(this.index)
       .subscribe((member: MemberInfo) => {
         alert(`${member.parentName} has been deleted!`);
-        this.router.navigate(['/search']);
-      }, err => console.log(err));
+        this.router.navigate(['search']);
+      }, err => console.log(`Failed to delete member`, err));
   }  
+
+  canDeactivate() : Observable<boolean> | Promise<boolean> | boolean {
+    if (this.memberInfoForm.touched && !this.isSavedOrUpdated) {
+      return confirm("Do you want to leave this page without saving?");
+    } else {
+      return true;
+    }
+  }
 }

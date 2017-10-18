@@ -27,10 +27,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout()
-      .subscribe((res: Response) => {
-        if (res.status !== 200)
-          alert("failed to log out!");
-      })
+      .subscribe(()=> {
+        this.isAuthenticated = false;
+      });
   }
 
 }

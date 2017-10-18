@@ -9,21 +9,22 @@ import { MemberResultComponent } from './member-search/member-result/member-resu
 import { BorrowBooksComponent } from './rental-management/borrow/borrow-books/borrow-books.component';
 import { ReturnBooksComponent } from './rental-management/return/return-books/return-books.component';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'borrow', component: BorrowComponent, canActivate: [AuthGuardService], children: [
     { path: 'member', component: MemberResultComponent }
   ]},
-  { path: 'borrow-books/:id', component: BorrowBooksComponent },
+  { path: 'borrow-books/:id', component: BorrowBooksComponent, canDeactivate: [CanDeactivateGuard] },
   { path: 'return', component: ReturnComponent, canActivate: [AuthGuardService], children: [
     { path: 'member', component: MemberResultComponent }
   ]},
   { path: 'return-books/:id', component: ReturnBooksComponent },
-  { path: 'member', component: MemberInfoComponent, canActivate: [AuthGuardService] },
+  { path: 'member', component: MemberInfoComponent, canActivate: [AuthGuardService], canDeactivate: [CanDeactivateGuard] },
   { path: 'search', component: MemberSearchComponent, canActivate: [AuthGuardService], children: [
     { path: 'member', component: MemberResultComponent },
-    { path: ':id/edit', component: MemberInfoComponent }
+    { path: ':id/edit', component: MemberInfoComponent, canDeactivate: [CanDeactivateGuard] }
   ]},
 ];
 @NgModule({

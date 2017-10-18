@@ -18,19 +18,36 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    let email = this.loginForm.value.email;
-    let password = this.loginForm.value.password;
-    this.authService.login(email, password)
-      .subscribe((res: Response) => {
-      }, err => { this.errorMessage = "Invalid email or password!"; });
+    if (this.loginForm.valid) {
+      let email = this.loginForm.value.email;
+      let password = this.loginForm.value.password;
+      this.authService.login(email, password)
+        .subscribe((res: Response) => {
+        }, err => { this.errorMessage = "Incorrect email or password"; });
+    } else {
+      this.errorMessage ="Please enter valid email and password!";
+      this.clearErrorMessage();
+    }
+    
   }
 
   onSignUp() {
-    let email = this.loginForm.value.email;
-    let password = this.loginForm.value.password;
-    this.authService.signup(email, password)
-      .subscribe((res: Response) => {
-      }, err => { this.errorMessage = "Failed to sign up!" });
+    if (this.loginForm.valid) {
+      let email = this.loginForm.value.email;
+      let password = this.loginForm.value.password;
+      this.authService.signup(email, password)
+        .subscribe((res: Response) => {
+        }, err => { this.errorMessage = "The email already exists!" });
+    } else {
+      this.errorMessage = "Please enter valid email and password!";
+      this.clearErrorMessage();
+    }    
+  }
+
+  clearErrorMessage() {
+    setTimeout(() => {
+      this.errorMessage = "";
+    }, 2000);
   }
 
 }

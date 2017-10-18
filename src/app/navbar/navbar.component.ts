@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../home-page/login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   toggle = false;
+  isAuthenticated = false;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.isAuthenticated = window.sessionStorage.getItem('jwt') ? true : false;
+    this.authService.authenticate.subscribe(token => {
+      this.isAuthenticated = token !== "" ? true : false;
+    });
   }
 
   onToggleMenu() {
@@ -19,6 +26,14 @@ export class NavbarComponent implements OnInit {
 
   onToggleMenuClass() {
     return this.toggle ? "in" : "";
+  }
+
+  onLogout() {
+    this.authService.logout()
+      .subscribe(() => {
+        this.isAuthenticated = false;
+        this.router.navigate(['/']);
+      });
   }
 
 }

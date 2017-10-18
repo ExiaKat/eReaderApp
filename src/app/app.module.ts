@@ -11,7 +11,6 @@ import { SearchHeaderComponent } from './rental-management/search-header/search-
 import { BorrowComponent } from './rental-management/borrow/borrow.component';
 import { ReturnComponent } from './rental-management/return/return.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { RentalBooksService } from './rental-management/services/rental-books.service';
 import { MemberInfoComponent } from './member-info/member-info.component';
 import { MemberSearchComponent } from './member-search/member-search.component';
 import { MemberResultComponent } from './member-search/member-result/member-result.component';
@@ -22,6 +21,7 @@ import { ToLocaleStringPipe } from './shared/to-locale-string.pipe';
 import { LoginComponent } from './home-page/login/login.component';
 import { AuthService } from './home-page/login/auth.service';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { AuthGuardService } from './shared/auth-guard.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [RentalBooksService, MemberInfoService, AuthService, AuthGuardService],
+  providers: [ MemberInfoService, AuthService, AuthGuardService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

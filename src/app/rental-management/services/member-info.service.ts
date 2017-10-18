@@ -21,24 +21,14 @@ export class MemberInfoService {
   }
 
   addMember(memberInfo: MemberInfo) { 
-    this.http.post(`http://${this.localhost}:3000/api/member`, memberInfo, {headers: this.getToken()})
-      .subscribe((res: Response) => {
-        alert(`New member ${memberInfo.parentName} saved successfully!
-              ${res.status}`)
-      }, err => {
-        console.log(err);
-      });
+    return this.http.post(`http://${this.localhost}:3000/api/member`, memberInfo, {headers: this.getToken()})
   }
 
   updateMember(index: number, newMemberInfo: MemberInfo) {
     const id = this.members[index]._id;
     let url = `http://${this.localhost}:3000/api/member/${id}`;
-    this.http.patch(url, newMemberInfo, {headers: this.getToken()})
-      .map((res: Response) => res.json().member as MemberInfo)
-      .subscribe(
-        (member: MemberInfo) => console.log("updated member info", member),
-        (err) => console.log(`Failed to update member ${this.members[index].parentName}`, err)
-      );
+    return this.http.patch(url, newMemberInfo, {headers: this.getToken()})
+      .map((res: Response) => res.json().member as MemberInfo);
   }
 
   deleteMember(index: number) {
@@ -73,7 +63,6 @@ export class MemberInfoService {
       })
       .do((members: MemberInfo[]) => {
         this.members = members;
-        console.log(this.members);
       });    
   }
 
@@ -92,20 +81,19 @@ export class MemberInfoService {
   }
 
   setRentalBooks(index: number, rentalBooks: Array<RentalBook>) {
-    console.log(this.members);
     let member = this.getMemberById(index);
     let filteredRentalBooks = rentalBooks.filter(rentalBook => {
       return !this.isBorrowedAndUnreturned(index, rentalBook);
     });
     member.rentalBooks.push(...filteredRentalBooks);
-    this.updateMember(index, member);
+    this.updateMember(index, member).subscribe();
   }
 
   returnRentalBooks(index: number, bIndex: number) {
     const memberInfo = this.getMemberById(index);
     memberInfo.rentalBooks[bIndex].returnDate = new Date();
     this.updateRentalBooks.next(memberInfo.rentalBooks);
-    this.updateMember(index, memberInfo);
+    this.updateMember(index, memberInfo).subscribe();
   }
 
   getRentalBooks(index: number) {

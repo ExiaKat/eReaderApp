@@ -25,6 +25,9 @@
           <button type="submit" class="btn btn-default">Submit</button>
         </form> -->
         <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="isAuthenticated">
+            <a style="cursor: pointer" (click)="onLogout()">Logout</a>
+          </li>
           <li class="dropdown" appOpenDropdown>
             <a i18n="@@memberDropdown" style="cursor: pointer" class="dropdown-toggle">Member <b class="caret"></b></a>
             <ul class="dropdown-menu">
