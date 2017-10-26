@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-12 col-md-2">
+      <h3 i18n="@@parentNameInReturn">{{memberInfo.parentName}}</h3>
+  </div>
+  <div class="col-sm-12 col-md-1"><small i18n="@@mobileInHeader">Mobile: {{memberInfo.mobile}}</small></div>
+  <div class="col-sm-12 col-md-9">
+    <div *ngFor="let child of memberInfo.children; let i = index">
+      <div class="row">
+        <div class="col-sm-12">
+          <b i18n="@@childNumberInHeader">Child{{i + 1}}:</b> {{child.childName}} 
+          <b i18n="@@genderInHeader">gender:</b> {{child.gender}}
+          <b i18n="@@dobInHeader">D.O.B.</b> {{child.dob | toLocaleString}}
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+
+
+

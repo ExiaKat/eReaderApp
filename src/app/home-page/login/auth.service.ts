@@ -5,36 +5,43 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService{
-  token: string = "";
+  token: string = null;
   authenticate = new Subject<string>();
-  localhost = "localhost";
+  hostUrl = "";
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    http.get('config.json').subscribe((res: Response) => {
+      this.hostUrl = res.json().hostUrl;
+    });
+    console.log(this.hostUrl);
+  }
 
   login(email: string, password: string) {
-    return this.http.post(`http://${this.localhost}:3000/api/users/login`, {email, password})
+    return this.http.post(`${this.hostUrl}/api/users/login`, {email, password})
       .do((res: Response) => {
         this.token = res.headers.get('x-auth');
-        window.sessionStorage.setItem('jwt', this.token);
+        if (this.token) 
+          window.sessionStorage.setItem('jwt', this.token);
         this.authenticate.next(this.token);
       });
   }
 
   signup(email: string, password: string) {
-    return this.http.post(`http://${this.localhost}:3000/api/users`, {email, password})
+    return this.http.post(`${this.hostUrl}/api/users`, {email, password})
       .do((res: Response) => {
         this.token = res.headers.get('x-auth');
-        window.sessionStorage.setItem('jwt', this.token);
+        if (this.token)
+          window.sessionStorage.setItem('jwt', this.token);
         this.authenticate.next(this.token);
       });
   }
 
   logout() {
-    return this.http.delete(`http://${this.localhost}:3000/api/users/logout`, {headers: new Headers({'x-auth': window.sessionStorage.getItem('jwt')})})
+    return this.http.delete(`${this.hostUrl}/api/users/logout`, {headers: new Headers({'x-auth': window.sessionStorage.getItem('jwt')})})
       .do((res: Response) => {
         window.sessionStorage.removeItem('jwt');
-        this.token = "";
-        this.authenticate.next("");
+        this.token = null;
+        this.authenticate.next(this.token);
       });
   }
 }

@@ -1,13 +1,9 @@
-<h3 i18n="@@parentNameInReturn">{{memberInfo.parentName}}</h3>
-<small i18n="@@mobileInReturn">Mobile: {{memberInfo.mobile}}</small>
-<div *ngFor="let child of memberInfo.children; let i = index">
-  <p>
-    <b i18n="@@childNumberInReturn">Child{{i + 1}}:</b> {{child.childName}} 
-    <b i18n="@@genderInReturn">gender:</b> {{child.gender}}
-  </p>
-  <p><b i18n="@@dobInReturn">D.O.B.</b> {{child.dob}}</p>
-</div>
+<app-info-header [memberInfo]="memberInfo"></app-info-header>
 <hr>
+<div class="pull-right">
+  <!-- <mat-checkbox>Not Returned</mat-checkbox> -->
+  <input type="checkbox" id="notReturned" name="filter" [(ngModel)]="isNotReturnedChecked" (change)="onChange()"><label for="notReturned">Not Returned</label>
+</div>
 <table class="table table-striped table-hover" style="margin-top: 10px">
     <tr>
       <th>#</th>
@@ -15,6 +11,7 @@
       <th i18n="@@quantityTableHeadingInReturn">Qantity</th>
       <th i18n="@@borrowDateTableHeadingInReturn">Borrow Date</th>
       <th i18n="@@returnDateTableHeadingInReturn">Return Date</th>
+      <th i18n="@@returnNotesTableHeadingInReturn">Notes</th>
       <th></th>
     </tr>
     <tr *ngFor="let rentalBook of rentalBooks; let i=index">
@@ -23,6 +20,9 @@
       <td>{{rentalBook.quantity}}</td>
       <td>{{rentalBook.borrowDate | toLocaleString }}</td>
       <td>{{rentalBook.returnDate | toLocaleString }}</td>
+      <td>
+        <input type="text" id="notes" class="form-control" [(ngModel)]="returnNotes[i]" [readonly]="rentalBook.returnDate">
+      </td>
       <td>
         <!-- <a role="button" style="cursor: pointer">Edit</a> -->
         <a i18n="@@returnButtonTextInReturn" *ngIf="!rentalBook.returnDate" role="button" style="cursor: pointer" (click)="onReturnBook(i)">Return</a>

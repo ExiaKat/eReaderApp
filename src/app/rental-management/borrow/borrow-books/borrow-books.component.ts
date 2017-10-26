@@ -41,8 +41,8 @@ export class BorrowBooksComponent implements OnInit, CanComponentDeactivate {
     const borrowDate = new Date();
     if (quantity < 1) 
       return alert("Quantity must be greater than 0");
-    if (!this.miService.isBorrowedAndUnreturned(this.index, new RentalBook(bookName, quantity, borrowDate, null)))
-      this.rentalBooks.push(new RentalBook(bookName, quantity, borrowDate, null));
+    if (!this.miService.isBorrowedAndUnreturned(this.index, new RentalBook(bookName, quantity, borrowDate, null, "")))
+      this.rentalBooks.push(new RentalBook(bookName, quantity, borrowDate, null, ""));
     else {
       alert(`Please return ${bookName} first before borrowing again`);
     }

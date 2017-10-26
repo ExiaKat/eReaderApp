@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.isAuthenticated = window.sessionStorage.getItem('jwt') ? true : false;
     this.authService.authenticate.subscribe(token => {
-      this.isAuthenticated = token !== "" ? true : false;
+      this.isAuthenticated = token ? true : false;
     });
   }
 

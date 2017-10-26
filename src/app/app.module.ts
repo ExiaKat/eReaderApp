@@ -22,6 +22,7 @@ import { LoginComponent } from './home-page/login/login.component';
 import { AuthService } from './home-page/login/auth.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
+import { InfoHeaderComponent } from './rental-management/info-header/info-header.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CanDeactivateGuard } from './shared/can-deactivate-guard.service';
     BorrowBooksComponent,
     ReturnBooksComponent,
     ToLocaleStringPipe,
-    LoginComponent
+    LoginComponent,
+    InfoHeaderComponent
   ],
   imports: [
     BrowserModule,

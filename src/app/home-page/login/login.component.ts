@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       let password = this.loginForm.value.password;
       this.authService.login(email, password)
         .subscribe((res: Response) => {
-        }, err => { this.errorMessage = "Incorrect email or password"; });
+        }, err => { this.errorMessage = "Failed to Log In: " + err; });
     } else {
       this.errorMessage ="Please enter valid email and password!";
       this.clearErrorMessage();
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       let password = this.loginForm.value.password;
       this.authService.signup(email, password)
         .subscribe((res: Response) => {
-        }, err => { this.errorMessage = "The email already exists!" });
+        }, err => { this.errorMessage = "Failed to Sign Up: " + err });
     } else {
       this.errorMessage = "Please enter valid email and password!";
       this.clearErrorMessage();

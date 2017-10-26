@@ -1,12 +1,4 @@
-<h3 i18n="@@parentNameInBorrow">{{memberInfo.parentName}} </h3>
-<p i18n="@@mobileInBorrow">Mobile: {{memberInfo.mobile}}</p>
-<div *ngFor="let child of memberInfo.children; let i = index">
-  <p>
-    <b i18n="@@childNumberInBorrow">Child Name:</b> {{child.childName}} 
-    <b i18n="@@genderInBorrow">Gender:</b> {{child.gender}}
-    <b i18n="@@dobInBorrow">D.O.B.</b> {{child.dob | toLocaleString}}
-  </p>
-</div>
+<app-info-header [memberInfo]="memberInfo"></app-info-header>
 <hr>
 <div class="row">
     <form #fm="ngForm" class="form-inline" (ngSubmit)="onborrowBook(fm)" >

@@ -17,7 +17,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isAuthenticated = window.sessionStorage.getItem('jwt') ? true : false;
     this.subscription = this.authService.authenticate.subscribe(token => {
-      this.isAuthenticated = token !== "" ? true : false;
+      this.isAuthenticated = token ? true : false;
     })
   }
 

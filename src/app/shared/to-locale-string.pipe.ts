@@ -10,10 +10,10 @@ export class ToLocaleStringPipe implements PipeTransform {
       try {
         return (<Date>value).toISOString().substring(0, 10);
       } catch (error) {
-        return null;
+        return value;
       }
     }
-    return null;
+    return value;
     
   }
 
