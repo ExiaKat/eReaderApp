@@ -9,8 +9,8 @@ import { Response } from '@angular/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  errorMessage = "";
-  @ViewChild("fmLogin") loginForm: NgForm;
+  errorMessage = '';
+  @ViewChild('fmLogin') loginForm: NgForm;
 
   constructor(private authService: AuthService) { }
 
@@ -19,34 +19,33 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.loginForm.valid) {
-      let email = this.loginForm.value.email;
-      let password = this.loginForm.value.password;
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
       this.authService.login(email, password)
         .subscribe((res: Response) => {
-        }, err => { this.errorMessage = "Failed to Log In: " + err; });
+        }, err => { this.errorMessage = 'Failed to Log In: ' + err; });
     } else {
-      this.errorMessage ="Please enter valid email and password!";
+      this.errorMessage = 'Please enter valid email and password!';
       this.clearErrorMessage();
     }
-    
   }
 
   onSignUp() {
     if (this.loginForm.valid) {
-      let email = this.loginForm.value.email;
-      let password = this.loginForm.value.password;
+      const email = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
       this.authService.signup(email, password)
         .subscribe((res: Response) => {
-        }, err => { this.errorMessage = "Failed to Sign Up: " + err });
+        }, err => { this.errorMessage = 'Failed to Sign Up: ' + err; });
     } else {
-      this.errorMessage = "Please enter valid email and password!";
+      this.errorMessage = 'Please enter valid email and password!';
       this.clearErrorMessage();
-    }    
+    }
   }
 
   clearErrorMessage() {
     setTimeout(() => {
-      this.errorMessage = "";
+      this.errorMessage = '';
     }, 2000);
   }
 

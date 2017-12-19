@@ -17,12 +17,12 @@ import { Observable } from 'rxjs/Observable';
 export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
   memberInfoForm: FormGroup;
   editMode = false;
-  buttonText = "Save";
+  buttonText = 'Save';
   index: number;
   isSavedOrUpdated = false;
 
   get childrenFormArray() {
-    return this.memberInfoForm.get("children") as FormArray;
+    return this.memberInfoForm.get('children') as FormArray;
   }
 
   constructor(private miService: MemberInfoService,
@@ -34,7 +34,7 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
       if (params.id) {
         this.index = params.id;
         this.editMode = true;
-        this.buttonText = "Update";
+        this.buttonText = 'Update';
         this.initForm();
         const memberInfo = this.miService.getMemberById(this.index);
         this.patchValueChildren(memberInfo.children);
@@ -45,13 +45,12 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
           eReader: {
             model: memberInfo.eReader.model,
             serialNumber: memberInfo.eReader.serialNumber,
-            purchasingDate: memberInfo.eReader.purchasingDate ? memberInfo.eReader.purchasingDate.toISOString().substring(0, 10) : ""
+            purchasingDate: memberInfo.eReader.purchasingDate ? memberInfo.eReader.purchasingDate.toISOString().substring(0, 10) : ''
           },
           deposit: memberInfo.deposit,
-          expiryDate: memberInfo.expiryDate ? memberInfo.expiryDate.toISOString().substring(0,10) : ""
+          expiryDate: memberInfo.expiryDate ? memberInfo.expiryDate.toISOString().substring(0, 10) : ''
         });
-      }
-      else {
+      } else {
         this.initForm();
       }
     });
@@ -65,7 +64,7 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
           'dob': new FormControl(null, Validators.required),
           'gender': new FormControl(null, Validators.required),
         })
-      ]
+      ];
     }
     this.memberInfoForm = new FormGroup({
       'memberNumber': new FormControl(null),
@@ -85,9 +84,9 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
   onAddChild(child: Child = null) {
     let childName, dob, gender = null;
 
-    if(child) {
+    if (child) {
       childName = child.childName;
-      dob = child.dob.toISOString().substring(0,10);
+      dob = child.dob.toISOString().substring(0, 10);
       gender = child.gender;
     }
     this.childrenFormArray.push(new FormGroup({
@@ -109,8 +108,8 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
   }
 
   onSaveMember() {
-    if(this.editMode)
-      this.miService.updateMember(this.index, this.memberInfoForm.value)      
+    if (this.editMode) {
+      this.miService.updateMember(this.index, this.memberInfoForm.value)
         .subscribe(
           (member: MemberInfo) => {
             this.isSavedOrUpdated = true;
@@ -119,18 +118,19 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
           },
           (err) => console.log(`Failed to update ${this.memberInfoForm.value.parentName}`, err)
         );
-    else 
+    }else {
       this.miService.addMember(this.memberInfoForm.value)
-      .subscribe((res: Response) => {
-        this.isSavedOrUpdated = true;
-        alert(`New member ${this.memberInfoForm.value.parentName} saved successfully!`);
-        this.router.navigate(['search']);
-      }, err => {
-        console.log(`Failed to save ${this.memberInfoForm.value.parentName}`, err);
-      });;
-    this.editMode = false;
-    this.buttonText = "Save";
-    this.isSavedOrUpdated = false; 
+        .subscribe((res: Response) => {
+          this.isSavedOrUpdated = true;
+          alert(`New member ${this.memberInfoForm.value.parentName} saved successfully!`);
+          this.router.navigate(['search']);
+        }, err => {
+          console.log(`Failed to save ${this.memberInfoForm.value.parentName}`, err);
+        });
+      this.editMode = false;
+      this.buttonText = 'Save';
+      this.isSavedOrUpdated = false;
+    }
   }
 
   onDeleteMember() {
@@ -139,11 +139,11 @@ export class MemberInfoComponent implements OnInit, CanComponentDeactivate {
         alert(`${member.parentName} has been deleted!`);
         this.router.navigate(['search']);
       }, err => console.log(`Failed to delete member`, err));
-  }  
+  }
 
-  canDeactivate() : Observable<boolean> | Promise<boolean> | boolean {
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.memberInfoForm.touched && !this.isSavedOrUpdated) {
-      return confirm("Do you want to leave this page without saving?");
+      return confirm('Do you want to leave this page without saving?');
     } else {
       return true;
     }
